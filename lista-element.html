@@ -7,7 +7,14 @@
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+    <template is="dom-repeat" items={{datos}} as="item">
+      <ul>
+        <li>[[item.titulo]]</li>
+          <ul>
+            <li>[[item.descripcion]]</li>
+          </ul>
+      </ul>
+    </template>
   </template>
 
   <script>
@@ -23,9 +30,13 @@
       static get is() { return 'lista-element'; }
       static get properties() {
         return {
-          prop1: {
-            type: String,
-            value: 'lista-element'
+          datos: {
+            type: Array,
+            value(){
+              return[
+                {titulo:"TITULO",descripcion:"DESCRIPCION"}
+              ]
+            }
           }
         };
       }
